@@ -336,11 +336,16 @@ Write a concise rationale covering:
 
 ### Variable collections
 
-| Collection  | Scope      | Contains |
-|-------------|------------|----------|
-| `primitive` | Local only | All tonal scale values as raw HEX |
-| `semantic`  | All scopes | Aliases → primitive, with Light + Dark modes |
-| `component` | All scopes | Aliases → semantic only |
+Color tokens must be stored in dedicated collections.
+Do not mix color tokens with spacing, typography, or other token types.
+
+| Collection             | Scope      | Contains |
+|------------------------|------------|----------|
+| `primitive-color`      | Local only | All tonal scale values as raw HEX |
+| `semantic-color`       | All scopes | Aliases → primitive-color, with Light + Dark modes |
+| `component-color`      | All scopes | Aliases → semantic-color only |
+
+Other token types (spacing, typography, radius, etc.) must use separate collections.
 
 ### Mode setup
 
@@ -352,9 +357,9 @@ Write a concise rationale covering:
 ### Variable naming
 
 Slash notation, exactly as specified:
-- `primitive/brand-primary/500`
-- `semantic/background/default`
-- `component/button-primary/background/hover`
+- `primitive-color/brand-primary/500`
+- `semantic-color/background/default`
+- `component-color/button-primary/background/hover`
 
 ### Figma documentation page
 
@@ -403,6 +408,7 @@ Only output the handoff format that was requested. Default to `figma-variables` 
 - Do not apply `color_density` input without adjusting step count AND semantic variant count
 - Do not output token names without resolved HEX values — always include both
 - Do not use pure `#000000` or `#FFFFFF` anywhere in the system
+- Never mix domains inside the same collection.
 
 ---
 
